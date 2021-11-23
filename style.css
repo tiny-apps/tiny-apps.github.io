@@ -37,3 +37,8 @@ html, body, canvas {
 }
 
 
+@font-face {
+	font-family: 'timmy-regular';
+	src: url('fonts/timmy-regular.woff2') format('woff2'), url('fonts/timmy-regular.ttf') format('truetype');
+}
+
