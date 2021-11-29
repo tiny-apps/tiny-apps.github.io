@@ -3934,6 +3934,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SaveState,
 		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
 		C3.Plugins.Sprite.Cnds.IsAnimPlaying,
+		C3.Behaviors.Platform.Cnds.IsEnabled,
 		C3.Behaviors.Platform.Cnds.IsJumping,
 		C3.Plugins.Sprite.Acts.SetAnim,
 		C3.Behaviors.Platform.Cnds.IsFalling,
@@ -3956,10 +3957,11 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Platform.Acts.SetIgnoreInput,
 		C3.Behaviors.Platform.Acts.SetVectorY,
 		C3.Plugins.Sprite.Cnds.OnCollision,
+		C3.Plugins.System.Cnds.CompareVar,
+		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.System.Acts.NextPrevLayout,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.System.Cnds.TriggerOnce,
-		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Plugins.Sprite.Exps.Width,
@@ -3969,6 +3971,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.System.Exps.loopindex,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.System.Cnds.CompareBoolVar,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Exps.LayerName,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.Sprite.Exps.Y,
@@ -3983,7 +3987,16 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Tilemap.Acts.SetWidth,
+		C3.Behaviors.MoveTo.Acts.MoveToPosition,
+		C3.Behaviors.MoveTo.Cnds.OnArrived,
+		C3.Plugins.Sprite.Acts.StopAnim,
+		C3.Plugins.Text.Acts.SetVisible,
+		C3.Plugins.Text.Cnds.IsVisible,
 		C3.Plugins.Keyboard.Cnds.OnKey,
+		C3.Plugins.Sprite.Cnds.IsVisible,
+		C3.Behaviors.Sin.Acts.SetEnabled,
+		C3.Plugins.System.Acts.AddVar,
+		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Plugins.System.Acts.SetVar
 	];
 };
@@ -4058,7 +4071,28 @@ self.C3_JsPropNameTable = [
 	{time_bar_orange: 0},
 	{time_remaining_bar_orange: 0},
 	{time_remaining: 0},
+	{Sprite3: 0},
+	{Sprite4: 0},
+	{Sprite5: 0},
+	{ScreenShot20211129At80653PM: 0},
+	{victory: 0},
+	{flag: 0},
+	{yellow_guy: 0},
+	{firework: 0},
+	{ScreenShot20211129At115025PM: 0},
+	{hand_powerup: 0},
+	{jeffimglad: 0},
+	{noworriesman: 0},
+	{ScreenShot20211129At115631PM: 0},
+	{acceptjeffshelp: 0},
+	{acceptjeffshelp2: 0},
+	{acceptjeffshelp3: 0},
+	{arrow_yes: 0},
+	{arrow_no: 0},
+	{Sprite6: 0},
+	{num_players: 0},
 	{time_initial: 0},
+	{hurt_willpower_lock: 0},
 	{amount: 0}
 ];
 }
@@ -4193,10 +4227,10 @@ self.C3_ExpressionFuncs = [
 		() => 1,
 		() => "spike",
 		() => "goal",
-		() => "willpower",
 		() => 2,
-		() => 2.5,
 		() => "4_1p",
+		() => "willpower",
+		() => 2.5,
 		() => 0.5,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -4212,6 +4246,7 @@ self.C3_ExpressionFuncs = [
 		},
 		() => "fire",
 		() => "willpower hand",
+		() => "victory_2p",
 		() => "",
 		() => 8,
 		p => {
@@ -4271,13 +4306,31 @@ self.C3_ExpressionFuncs = [
 		() => "time remaining",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() % 20);
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
 			return () => (180 * (v0.GetValue() / v1.GetValue()));
 		},
+		() => "firework",
+		() => "flag",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1());
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(50, (f1() / 2));
+		},
+		() => "explode",
+		() => "jeff ask help",
+		() => "7_2p",
+		() => 400,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 65);
+		},
+		() => 415,
+		() => 0.1,
 		() => "title_1p",
 		() => "title_2p",
 		() => "gameover_1p_yes",
