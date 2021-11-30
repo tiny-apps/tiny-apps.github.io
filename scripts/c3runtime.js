@@ -3987,17 +3987,23 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Tilemap.Acts.SetWidth,
+		C3.Plugins.Sprite.Cnds.IsVisible,
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
 		C3.Plugins.Sprite.Acts.StopAnim,
 		C3.Plugins.Text.Acts.SetVisible,
 		C3.Plugins.Text.Cnds.IsVisible,
 		C3.Plugins.Keyboard.Cnds.OnKey,
-		C3.Plugins.Sprite.Cnds.IsVisible,
 		C3.Behaviors.Sin.Acts.SetEnabled,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Behaviors.Platform.Acts.SimulateControl,
-		C3.Plugins.System.Acts.SetVar
+		C3.Plugins.System.Acts.SetVar,
+		C3.Behaviors.Platform.Acts.SetGravity,
+		C3.Behaviors.Platform.Acts.SetMaxSpeed,
+		C3.Plugins.Sprite.Cnds.CompareWidth,
+		C3.Plugins.Sprite.Acts.SetWidth,
+		C3.Plugins.Sprite.Acts.SetY,
+		C3.Plugins.Sprite.Acts.SetX
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4059,7 +4065,7 @@ self.C3_JsPropNameTable = [
 	{diamond_ray: 0},
 	{hand: 0},
 	{hurt_notify: 0},
-	{hurt_txt: 0},
+	{colasolJump: 0},
 	{ScreenShot20211123At71839PM: 0},
 	{willpowertext: 0},
 	{time_remaining_text: 0},
@@ -4074,7 +4080,7 @@ self.C3_JsPropNameTable = [
 	{Sprite3: 0},
 	{Sprite4: 0},
 	{Sprite5: 0},
-	{ScreenShot20211129At80653PM: 0},
+	{victory_subtitle: 0},
 	{victory: 0},
 	{flag: 0},
 	{yellow_guy: 0},
@@ -4090,6 +4096,9 @@ self.C3_JsPropNameTable = [
 	{arrow_yes: 0},
 	{arrow_no: 0},
 	{Sprite6: 0},
+	{collosal: 0},
+	{ColossalJump: 0},
+	{ScreenShot20211201At124446AM: 0},
 	{num_players: 0},
 	{time_initial: 0},
 	{hurt_willpower_lock: 0},
@@ -4227,8 +4236,9 @@ self.C3_ExpressionFuncs = [
 		() => 1,
 		() => "spike",
 		() => "goal",
-		() => 2,
 		() => "4_1p",
+		() => 2,
+		() => "7_2p",
 		() => "willpower",
 		() => 2.5,
 		() => 0.5,
@@ -4323,14 +4333,24 @@ self.C3_ExpressionFuncs = [
 		},
 		() => "explode",
 		() => "jeff ask help",
-		() => "7_2p",
 		() => 400,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 65);
-		},
 		() => 415,
 		() => 0.1,
+		() => "collasoal jump",
+		() => "5_2p",
+		() => 600,
+		() => 950,
+		() => 700,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 10);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 25);
+		},
+		() => "victory subtitle",
+		() => 478,
 		() => "title_1p",
 		() => "title_2p",
 		() => "gameover_1p_yes",
