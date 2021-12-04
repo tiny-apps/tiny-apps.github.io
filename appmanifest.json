@@ -1,7 +1,7 @@
 {
-	"name": "Platformer",
-	"short_name": "Platformer",
-	"description": "",
+	"name": "Colossal Mini-Game",
+	"short_name": "Colossal Mini-Game",
+	"description": "Quitting Porn is a Two-Player Game",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "landscape",
