@@ -2,8 +2,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
-	
-	background: #000000;
+	background: linear-gradient(to left, #005ee0, #002870);
 	color: white;
 }
 
